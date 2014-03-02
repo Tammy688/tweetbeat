@@ -1,0 +1,8 @@
+<h1>Welcome#index</h1>
+<% if user_signed_in? %>
+  <div>Signed in as... <%= current_user.email %></div>
+  <%=link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+ <% else %>
+   Not signed in. Time to sign in!
+   <%=link_to 'Sign in', new_user_session_path, :method => :get %>
+  <% end %>
