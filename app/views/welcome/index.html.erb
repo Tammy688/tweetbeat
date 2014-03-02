@@ -1,4 +1,4 @@
-<h1>Welcome#index</h1>
+<h1>Tweet Beat</h1>
 <% if user_signed_in? %>
   <div>Signed in as... <%= current_user.email %></div>
   <%=link_to 'Sign out', destroy_user_session_path, :method => :delete %>
@@ -6,3 +6,24 @@
    Not signed in. Time to sign in!
    <%=link_to 'Sign in', new_user_session_path, :method => :get %>
   <% end %>
+
+
+
+<div>
+  <div style="height:40px"></div>
+  <div><h4>Recent Tweets</h4></div>
+
+  <% @last10.each do |tweet| %>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <td colspan="3" class="tweet info"><%= tweet.tweet_text %></td>
+      </tr>
+      <tr>
+        <td>by <%= @user %> |
+          <%= link_to "view", tweet %> |
+          <%= link_to 'update', edit_tweet_path(tweet) %></td>
+      </tr>
+    </table>
+  <% end %>
+
+</div>

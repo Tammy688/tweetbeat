@@ -1,4 +1,6 @@
 Tweeterbeater::Application.routes.draw do
+  resources :comments
+
   resources :tweets
 
   root "welcome#index"

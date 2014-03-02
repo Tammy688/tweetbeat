@@ -6,6 +6,9 @@ class TweetsController < ApplicationController
   def index
     #Tweet.destroy_all
     @tweets = Tweet.all
+    @last10 = Tweet.last(10)
+    #@user = User.find(@tweet.user_id.email)
+    @user = current_user.email
   end
 
   # GET /tweets/1
@@ -20,6 +23,15 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+    # respond_to do |format|
+    #   if @tweet.update(tweet_params)
+    #     format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @tweet.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # POST /tweets

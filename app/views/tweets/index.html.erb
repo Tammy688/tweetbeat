@@ -1,27 +1,36 @@
-<h1>Listing tweets</h1>
+<h1>Last 10 Tweets</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Status</th>
       <th></th>
-      <th></th>
+      <th>Tweet</th>
+      <th>User</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.tweet_text %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr>
+
+      <% @last10.each do |tweet| %>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <td colspan="3" class="tweet"><%= tweet.tweet_text %></td>
+          </tr>
+          <tr>
+            <td>by <%= @user %> |
+              <%= link_to "view", tweet %> |
+              <%= link_to 'update', edit_tweet_path(tweet) %></td>
+          </tr>
+          <hr>
+        <% end %>
+      </table>
+
+    </tr>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Tweet', new_tweet_path %>
+<%= link_to 'Tweet', new_tweet_path %>
