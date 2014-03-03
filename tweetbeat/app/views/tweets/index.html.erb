@@ -1,0 +1,36 @@
+<h1>Last 10 Tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Tweet</th>
+      <th>User</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+
+      <% @last10.each do |tweet| %>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <td colspan="3" class="tweet"><%= tweet.tweet_text %></td>
+          </tr>
+          <tr>
+            <td>by <%= @user %> |
+              <%= link_to "view", tweet %> |
+              <%= link_to 'update', edit_tweet_path(tweet) %></td>
+          </tr>
+          <hr>
+        <% end %>
+      </table>
+
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Tweet', new_tweet_path %>
