@@ -18,8 +18,13 @@
           <tr>
             <td colspan="3" class="tweet"><%= tweet.tweet_text %></td>
           </tr>
+          <%= tweet.comments.each do |comment| %>
           <tr>
-            <td>by <%= @user %> |
+            <td class="comment"><%= comment.comment_text %></td>
+          </tr>
+
+          <tr>
+            <td>by <%= tweet.user_id %> |
               <%= link_to "view", tweet %> |
               <%= link_to 'update', edit_tweet_path(tweet) %></td>
           </tr>

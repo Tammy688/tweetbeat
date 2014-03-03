@@ -11,19 +11,26 @@
 
 <div>
   <div style="height:40px"></div>
-  <div><h4>Recent Tweets</h4></div>
-
-  <% @last10.each do |tweet| %>
-    <table class="table table-bordered table-hover">
-      <tr>
-        <td colspan="3" class="tweet info"><%= tweet.tweet_text %></td>
-      </tr>
-      <tr>
-        <td>by <%= @user %> |
-          <%= link_to "view", tweet %> |
-          <%= link_to 'update', edit_tweet_path(tweet) %></td>
-      </tr>
-    </table>
-  <% end %>
+  <div class="tweet-feed">
+    <div><h4>Recent Tweets</h4></div>
+    <% @last10.each do |tweet| %>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <td colspan="3" class="tweet"><%= tweet.tweet_text %></td>
+        </tr>
+        <% tweet.comments.each do |comment| %>
+          <tr>
+            <td style="padding-left:60px"><%= comment.comment_text %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>by <%= tweet.user_id %> |
+            <%= link_to "view", tweet %> |
+            <%= link_to 'update', edit_tweet_path(tweet) %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 
 </div>
