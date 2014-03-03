@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
   # GET /tweets
   # GET /tweets.json
   def index
@@ -15,6 +15,7 @@ class TweetsController < ApplicationController
   # GET /tweets/1.json
   def show
     @comments = @tweet.comments
+    #User.find(id=2)
   end
 
   # GET /tweets/new
@@ -38,6 +39,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
+    @approve = "MJ approves this message. "
     @tweet = Tweet.new(tweet_params)
     respond_to do |format|
       if @tweet.save

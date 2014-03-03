@@ -13,7 +13,7 @@
   <div style="height:40px"></div>
   <div class="tweet-feed">
     <div><h4>Recent Tweets</h4></div>
-    <% @last10.each do |tweet| %>
+    <% @show10.each do |tweet| %>
       <table class="table table-bordered table-striped">
         <tr>
           <td colspan="3" class=" info tweet"><%= tweet.tweet_text %></td>
@@ -24,7 +24,8 @@
           </tr>
         <% end %>
         <tr>
-          <td>by <%= tweet.user_id %> |
+          <td class="by">-<%= User.find(tweet.user_id).username %> 
+          <br>
             <%= link_to "view", tweet %> |
             <%= link_to 'update', edit_tweet_path(tweet) %>
           </td>

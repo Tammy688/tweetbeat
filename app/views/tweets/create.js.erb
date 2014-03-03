@@ -1,3 +1,3 @@
-$('#tweet_response').append('Thanks for the tweet!');
+$('#tweet_response').html('Thanks for the tweet! <%= current_user.email %>');
 
-$('.show_tweet').append('<%=  @tweet.tweet_text %>')
+$('#approve').append('<%=  @approve %>');

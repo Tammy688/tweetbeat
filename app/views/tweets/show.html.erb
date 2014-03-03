@@ -1,9 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Tweet:</strong>
-  <%= @tweet.tweet_text %>
-</p>
+<div>
+  <div class="tweet">
+  	<div style="height:30px">
+	<%= link_to 'Edit', edit_tweet_path(@tweet) %> | 
+	<%= link_to 'Back', root_path %>
+	</div>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <td colspan="3" class=" info tweet"><%= @tweet.tweet_text %></td>
+        </tr>
+        <% @tweet.comments.each do |comment| %>
+          <tr>
+            <td style="padding-left:60px"><%= comment.comment_text %>
+              <div class="by">-<%= User.find(comment.user_id).username %></div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', root_path %>
+
+
+
+
+<!-- Tweet.find(tweet.user_id).comment_text
+
+User.find(comment.user_id).username  -->
+
