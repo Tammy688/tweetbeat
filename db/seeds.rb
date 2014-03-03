@@ -8,16 +8,23 @@
 
 require 'faker'
 
-50.times do 
-  user = User.new(email: Faker::Internet.email, 
+50.times do
+  user = User.new(email: Faker::Internet.email,
                   password: 'password')
   user.save
 end
 
+
+
 users = User.all
 users.each do |user|
   rand(12..25).times do
-    tweet = Tweet.new(tweet_text: Faker::Lorem.words(rand(25..40)).join(" "),
+    content = []
+    rand(8..12).times do
+      content.push(Faker::Company.catch_phrase)
+    end
+    content = content.join(" ") + "."
+    tweet = Tweet.new(tweet_text: content.capitalize,
                       user_id: user.id)
     tweet.save
   end
@@ -25,9 +32,14 @@ end
 
 tweets = Tweet.all
 tweets.each do |tweet|
-  rand(3..12).times do
-    comment = Comment.new(comment_text: Faker::Lorem.words(rand(15..25)).join(" "),
-                      tweet_id: tweet.id)
+  rand(4..8).times do
+    content = []
+    rand(3..6).times do
+      content.push(Faker::Company.catch_phrase)
+    end
+    content = content.join(" ") + "."
+    comment = Comment.new(comment_text: content.capitalize,
+                          tweet_id: tweet.id)
     comment.save
   end
 end
