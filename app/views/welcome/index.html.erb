@@ -1,13 +1,12 @@
-<h1>Tweet Beat</h1>
 <% if user_signed_in? %>
-  <div>Signed in as... <%= current_user.email %></div>
-  <%=link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+  <div style="display: inline"><%=link_to 'Sign out', destroy_user_session_path, :method => :delete %> |
+    Signed in as... <%= current_user.email %></div>
+  <div style="display: inline"><%= image_tag (current_user.photo_url), {:class => 'img-thumbnail tiny'} %></div>
+
  <% else %>
    Not signed in. Time to sign in!
    <%=link_to 'Sign in', new_user_session_path, :method => :get %>
   <% end %>
-
-
 
 <div>
   <div style="height:40px"></div>
@@ -20,11 +19,13 @@
         </tr>
         <% tweet.comments.each do |comment| %>
           <tr>
-            <td style="padding-left:60px"><%= comment.comment_text %></td>
+            <td style="padding-left:60px"><%= comment.comment_text %>
+              <div class="by">-<%= link_to User.find(comment.user_id).username, profiles_show_path(:id=>comment.user_id) %></div>
+            </td>
           </tr>
         <% end %>
         <tr>
-          <td class="by">-<%= User.find(tweet.user_id).username %> 
+          <td class="by">-<%= link_to User.find(tweet.user_id).username, profiles_show_path(:id=>tweet.user_id) %>
           <br>
             <%= link_to "view", tweet %> |
             <%= link_to 'update', edit_tweet_path(tweet) %>

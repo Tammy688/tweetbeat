@@ -1,9 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<div class="profile-image">
+  <table align="center" class="table table-bordered">
+    <tr>
+      <td align="center"><%= image_tag (@user.photo_url), {:class => 'img-thumbnail'} %></td>
+    </tr>
+    <tr>
+      <td align="center"><h2 style="font-family: Comic Sans MS, cursive, sans-serif"><%= @user.username %></h2></td>
+    </tr>
+  </table>
+</div>
+
 <div>
   <div class="tweet">
   	<div style="height:30px">
-	<%= link_to 'Edit', edit_tweet_path(@tweet) %> | 
+	<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
 	<%= link_to 'Back', root_path %>
 	</div>
       <table class="table table-bordered table-striped">
@@ -13,7 +24,7 @@
         <% @tweet.comments.each do |comment| %>
           <tr>
             <td style="padding-left:60px"><%= comment.comment_text %>
-              <div class="by">-<%= User.find(comment.user_id).username %></div>
+              <div class="by">-<%= link_to User.find(comment.user_id).username, profiles_show_path(:id=>comment.user_id) %></div>
             </td>
           </tr>
         <% end %>

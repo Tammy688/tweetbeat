@@ -1,4 +1,30 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="profile-image">
+  <table align="center" class="table table-bordered">
+    <tr>
+      <td align="center"><%= image_tag (@user.photo_url), {:class => 'img-thumbnail'} %></td>
+    </tr>
+    <tr>
+      <td align="center"><h2 class="name"><%= @user.username %></h2></td>
+    </tr>
+  </table>
+</div>
 
-<%= current_user.email %>
+<div style="width:800px">
+  <div style="height:40px"></div>
+  <div class="tweet-feed">
+    <div><h4>Recent Tweets...</h4></div>
+    <% @last10.each do |tweet| %>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <td colspan="3" class=" info tweet"><%= tweet.tweet_text %></td>
+        </tr>
+        <tr>
+          <td class="table " style="padding-left:60px"><%= tweet.comments.count %> <%= link_to "comments...", tweet %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+</div>
+

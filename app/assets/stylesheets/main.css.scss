@@ -10,11 +10,31 @@
   padding-left:40px;
 }
 
-.tweet{
-	margin-left: 60px;
-	width: 800px;
-}
-
 .by{
   font-style: italic;
+}
+
+.body-content {
+  margin-top: 40px;
+  width:800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-image{
+  width:200px;
+  background-color:#BABECC;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tiny{
+  height:44px;
+  vertical-align:text-bottom;
+  margin-top: 6px;
+}
+
+.name{
+  font-family: Comic Sans MS, cursive, sans-serif;
+
 }

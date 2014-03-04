@@ -4,18 +4,17 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    #Tweet.destroy_all
     @tweets = Tweet.all
     @last10 = Tweet.last(10)
     #@user = User.find(@tweet.user_id.email)
-    @user = current_user.email
+    #@user = current_user.email
   end
 
   # GET /tweets/1
   # GET /tweets/1.json
   def show
     @comments = @tweet.comments
-    #User.find(id=2)
+    @user = User.find(Tweet.find(params[:id]).user_id)
   end
 
   # GET /tweets/new
