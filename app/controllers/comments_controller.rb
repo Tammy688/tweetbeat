@@ -3,6 +3,9 @@ class CommentsController < ApplicationController
 
   # GET /comments
   # GET /comments.json
+
+  include TweetsHelper
+
   def index
     @comments = Comment.all
   end
@@ -25,6 +28,11 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    #update the number of comments here in the create action
+    #refactor to place methods that are shared across the controller in the helper
+    
+    set_num_comments(params[:tweed_id])
+    # puts set_comment
 
     respond_to do |format|
       if @comment.save

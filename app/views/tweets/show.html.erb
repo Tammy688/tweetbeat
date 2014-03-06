@@ -27,7 +27,12 @@
               <div class="by">-<%= link_to User.find(comment.user_id).username, profiles_show_path(:id=>comment.user_id) %></div>
             </td>
           </tr>
+          <td>
+          </td>
         <% end %>
+          <tr>
+            <td><%= link_to 'Add Comment', new_comment_path(:tweet_id=>@tweet.id) %></td>
+          </tr>
       </table>
   </div>
 </div>

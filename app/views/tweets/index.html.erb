@@ -22,22 +22,17 @@
           <tr>
             <td class="comment"><%= comment.comment_text %></td>
           </tr>
-
           <tr>
             <td>by <%= tweet.user_id %> |
               <%= link_to "view", tweet %> |
-              <%= link_to 'update', edit_tweet_path(tweet) %></td>
+              <%= link_to 'update', edit_tweet_path(tweet) %>
+            </td>
           </tr>
-          <hr>
         <% end %>
       </table>
-
     </tr>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'Tweet', new_tweet_path %>
-
-link_to 'Tweet', new_tweet_path
+<%= link_to 'New Tweet', new_tweet_path %>

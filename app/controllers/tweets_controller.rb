@@ -14,6 +14,8 @@ class TweetsController < ApplicationController
   # GET /tweets/1.json
   def show
     @comments = @tweet.comments
+    #refactor below.  It's ugly but it works. 
+    #try Tweet.find(params[:id]).user.user_id
     @user = User.find(Tweet.find(params[:id]).user_id)
   end
 
