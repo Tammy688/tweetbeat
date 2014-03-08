@@ -18,20 +18,22 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    @tweet_id = params[:tweet_id]
+    @tweet = Tweet.find(@tweet_id)
   end
 
   # GET /comments/1/edit
   def edit
   end
 
-  # POST /comments
+  # POST /commentsx
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
     #update the number of comments here in the create action
-    #refactor to place methods that are shared across the controller in the helper
-    
-    set_num_comments(params[:tweed_id])
+    #refactor to place methods that are shared across the controller in the helper   
+    set_num_comments(comment_params[:tweet_id])
     # puts set_comment
 
     respond_to do |format|
@@ -77,6 +79,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:comment_text)
+      params.require(:comment).permit(:comment_text, :user_id, :tweet_id)
     end
 end

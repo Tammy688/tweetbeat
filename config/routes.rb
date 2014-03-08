@@ -1,6 +1,7 @@
 Tweeterbeater::Application.routes.draw do
   get "profiles/index"
   get "profiles/show"
+  get "welcome/about"
   resources :comments
 
   resources :tweets

@@ -1,22 +1,23 @@
 <h1>Listing comments</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>User</th>
       <th>Comment text</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody width="700">
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.comment_text %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="comments-author"><%= comment.user.email %></td>
+        <td class="info comments-td"><%= comment.comment_text %></td>
+      </tr>
+      <tr height="80">
+        <td colspan="2" align="right"> 
+          <%= link_to "view", comment %> | 
+          <%= link_to 'update', edit_comment_path(comment) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

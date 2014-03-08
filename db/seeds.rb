@@ -10,11 +10,10 @@ require 'faker'
 
 50.times do
   image = "http://lorempixel.com/160/120/animals"
-  name = Faker::Name.first_name
   user = User.new(email: Faker::Internet.email,
                   password: 'password',
                   photo_url: image,
-                  username: name)
+                  username: Faker::Name.first_name)
   user.save
 end
 
@@ -28,21 +27,23 @@ users = User.all
 users.each do |user|
   rand(12..25).times do
     content = []
+    num_comments = rand(4..8)
     rand(8..12).times do
       content.push(Faker::Company.catch_phrase)
     end
     content = (content.join(" ") + ".").capitalize
     tweet = Tweet.new(tweet_text: content,
-                      user_id: user.id)                     
+                      user_id: user.id,
+                      num_comments: num_comments)                     
     tweet.save
   end
 end
 
 tweets = Tweet.all
-tweets.each do |tweet|
-  rand(4..8).times do
+tweets.each do |tweet| 
+  tweet.num_comments.times do
     content = []
-    author = rand(1..50)
+    author = rand(1..51)
     rand(3..6).times do
       content.push(Faker::Company.catch_phrase)
     end

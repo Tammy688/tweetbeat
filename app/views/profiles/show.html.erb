@@ -1,10 +1,10 @@
 <div class="profile-image">
   <table align="center" class="table table-bordered">
     <tr>
-      <td align="center"><%= image_tag (@user.photo_url), {:class => 'img-thumbnail'} %></td>
+      <td align="center"><%= image_tag (current_user.photo_url), {:class => 'img-thumbnail'} %></td>
     </tr>
     <tr>
-      <td align="center"><h2 class="name"><%= @user.username %></h2></td>
+      <td align="center"><h2 class="name"><%= current_user.username %></h2></td>
     </tr>
   </table>
 </div>
